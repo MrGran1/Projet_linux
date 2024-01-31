@@ -1,0 +1,2 @@
+0 10 * * * C:\Users\iland\OneDrive\Bureau\M1 2023\Administration Linux\TD\TP\scriptGaz.sh
+0 10 * * * C:\Users\iland\OneDrive\Bureau\M1 2023\Administration Linux\TD\TP\resume.py
