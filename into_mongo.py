@@ -1,15 +1,30 @@
 import pymongo
-DB_NAME = "test"
-COLUMN = "customers"
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+import os
+import json
+PATH_CURRENCY = "/home/tigran/Documents/Cours/linux/Projet_linux/conso_electrique"
 
-mydb = myclient[DB_NAME]
 
-mycol = mydb[COLUMN]
+# DB_NAME = "test"
+# COLUMN = "customers"
+# myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 
-mydict = { "name": "John", "address": "Highway 37" }
+# mydb = myclient[DB_NAME]
 
-#x = mycol.insert_one(mydict)
-x = mycol.find_one()
+# mycol = mydb[COLUMN]
 
-print(x) 
+# mydict = { "name": "John", "address": "Highway 37" }
+
+# #x = mycol.insert_one(mydict)
+# x = mycol.find_one()
+
+# print(x) 
+# --------------------------- Brouillon -----------------------
+
+
+documents = os.listdir(PATH_CURRENCY)
+# Ouverture de tout les fichiers
+for path_doc in documents:
+    fichier = open(PATH_CURRENCY+"/"+path_doc)
+    fichier = json.load(fichier)
+
+    print(fichier["results"][0]['consommation'])
