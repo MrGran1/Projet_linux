@@ -1,5 +1,7 @@
 RENDU :[https://cloud.parisdescartes.fr/index.php/s/K8Hkn5wqLqQyCHN]
 
+Google Doc CR : https://docs.google.com/document/d/1WKP_dsGBxa3FUT4kczwEo_ZtRW7rPM_iMu9qsS5pXWE/edit?usp=sharing
+
     Fichier compressé (zip ou tar.gz) avec les noms des étudiants dans le nom de fichier
     Bien mettre les noms des étudiants dans le rapport
 
