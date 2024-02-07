@@ -19,7 +19,6 @@ if [ ! -f "$path/$fichier_save" ]; then
 else
     #On récupère la date de derniere recuperation des données
     derniere_save=$(head -n 1 "$path/$fichier_save")
-    echo oui oui $deniere_save
 fi
 
 
