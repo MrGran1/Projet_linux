@@ -1,6 +1,6 @@
 #!/bin/bash
 
-output_dir="/home/u/Bureau/linux"
+output_dir="./conso_gaz"
 
 current_datetime=$(date +"%Y%m%d")
 output_filename="consommation_gaz_${current_datetime}.json"
