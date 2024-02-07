@@ -26,7 +26,7 @@ def lire_donnees(dossier_donnees):
             chemin_fichier = os.path.join(dossier_donnees, fichier)
 
             with open(chemin_fichier, 'r') as file:
-                #On charger les donnees JSON depuis le fichier
+                #On charge les donnees JSON depuis le fichier
                 fichier_json = json.load(file)
 
                 print("\nLe fichier", fichier ,"contient", len(fichier_json['results']), "éléments.")
