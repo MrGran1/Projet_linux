@@ -1,5 +1,5 @@
-#toutes les 2heures à la 30ème minute
-30 */2 * * * cd /home/mahyr/Bureau/adminlinux && ./script.sh
+#toutes les jours à 00h35          
+35 0 * * * cd /home/mahyr/Bureau/adminlinux && ./script.sh
 
-#tous les 2jours à 0h00
-0 0 */2 * * cd /home/mahyr/Bureau/adminlinux && python3 resume.py
+#tous les 2jours à 1h00 am
+0 1 */2 * * cd /home/mahyr/Bureau/adminlinux && python3 resume.py
