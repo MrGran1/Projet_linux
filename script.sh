@@ -1,24 +1,13 @@
 #!/bin/bash
 
-
 path="./meteo"
 fichier="meteo_data"
-fichier_save="param.txt"
-derniere_save="2024-02-06T16"
+derniere_save=$(date +"%Y-%m-%dT%H")
+
 
 #Création du repertoire
 if [ ! -d "$path" ]; then
     mkdir "$path"
-fi
-
-if [ ! -f "$path/$fichier_save" ]; then
-    #Créer le fichier s'il n'existe pas
-    touch "$path/$fichier_save"
-    #Et on donne une date par défaut (ici janvier 2023)
-    echo $derniere_save >> $path/$fichier_save
-else
-    #On récupère la date de derniere recuperation des données
-    derniere_save=$(head -n 1 "$path/$fichier_save")
 fi
 
 
@@ -37,9 +26,3 @@ if [ $reponse -eq 404 ]; then
 else
     echo "Données récupérées avec succès!"
 fi
-
-#Récupérer la date de sauvegarde au format '2023-01-01T00'
-derniere_save=$(echo "${heure}" | awk -F '_' '{printf "%s-%s-%sT%s", $1, $2, $3, $4}')
-
-#Et on met à jour la date de dernière sauvegarde
-echo -n $derniere_save > $path/$fichier_save
