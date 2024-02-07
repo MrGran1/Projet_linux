@@ -5,7 +5,7 @@ Google Doc CR : https://docs.google.com/document/d/1WKP_dsGBxa3FUT4kczwEo_ZtRW7r
     Fichier compressé (zip ou tar.gz) avec les noms des étudiants dans le nom de fichier
     Bien mettre les noms des étudiants dans le rapport
 
-#Demande à réaliser
+# Demande à réaliser
 ## Sujet
 
 Vous êtes missionné pour réfléchir à la création un tableau de bord temps réel, représentant l’activité journalière de ce que vous voulez (activités humaines, activités géologiques, activités climatiques..) sur une zone de votre choix (terre, continent, pays, ville…).
@@ -50,7 +50,7 @@ A partir de sources de données temps réel, vous devez récupérer les données
         Moyen d’accès aux données (API, téléchargement, autre… - token nécessaire ou non, libre ou non)
         Droit de ré-utilisation des données
 
-## Livrables à rendre
+## Livrables à rendre
 
     Rapport
         Problématique choisie
