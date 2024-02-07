@@ -1,0 +1,5 @@
+#toutes les 2heures à la 30ème minute
+30 */2 * * * /home/mahyr/Bureau/adminlinux/script.sh
+
+#tous les 2jours à 0h00
+0 0 */2 * * /home/mahyr/Bureau/adminlinux/resume.py
