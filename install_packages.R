@@ -7,3 +7,4 @@ install_packages <- packages[!packages %in% installed.packages()]
 if (length(install_packages) > 0) {
   install.packages(install_packages)
 }
+

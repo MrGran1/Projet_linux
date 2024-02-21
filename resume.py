@@ -15,12 +15,42 @@ collection = db['gaz']
 
 ### Recup des data de gaz -----------------------------------------------------------------
 # collection="gaz"
-def process_json_file(file_path):
-    with open(file_path, 'r') as file:
-        data = json.load(file)
-        for result in data['results']:
-            summary_data = {'date': result['date'], 'consommation_gaz': result['consommation_journaliere_mwh_pcs']}
-            collection.insert_one(summary_data)
+# Fonction pour convertir les noms d'heures en objets datetime
+def convertir_heure(clef):
+    if len(clef) != 5:
+        return None
+    if not clef[2] == '_':
+        return None
+    try:
+        heure, minute = int(clef[:2]), int(clef[3:])
+        if 0 <= heure <= 23 and 0 <= minute <= 59:
+            return datetime.strptime(f'{heure:02d}:{minute:02d}', '%H:%M')
+    except ValueError:
+        pass
+    return None
+
+# Fonction pour lire les données du fichier JSON
+def lire_donnees(fichier_json):
+    # Ouvrir le fichier JSON
+    with open(fichier_json, 'r') as file:
+        donnees = json.load(file)
+    # Extraire la date
+    donnees = donnees['results'][0]
+    date_str = donnees['date']
+
+    # Parcourir les clés du dictionnaire
+    for clef in donnees:
+        # Convertir la clé en objet datetime
+        heure = convertir_heure(clef)
+        # Si la conversion a réussi
+        if heure:
+            consommation_gaz = donnees[clef]
+            document = {
+                'date' : date_str,
+                'heure': heure,
+                'consommation_gaz': consommation_gaz
+            }
+            collection.insert_one(document)
 
 # Liste tous les fichiers dans le répertoire d'entrée
 files = os.listdir(input_dir)
@@ -29,8 +59,11 @@ files = os.listdir(input_dir)
 for file in files:
     if file.endswith(".json"):
         file_path = os.path.join(input_dir, file)
-        process_json_file(file_path)
+        lire_donnees(file_path)
         #os.remove(file_path)
+
+docs = collection.find()
+
 
 ### Recup des data météo -----------------------------------------------------------------
 collection="Meteo"
