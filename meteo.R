@@ -54,6 +54,15 @@ obtenirGraphe_elec <- function(donnees, abscisse, ordonnee){
 
 }
 
+obtenirGraphe_gaz <- function(donnees, abscisse, ordonnee){
+
+    ggplot(donnees) +
+        aes(x = abscisse, y = ordonnee, colour = "red") +
+        geom_line() +
+        geom_point()
+
+}
+
 #db_meteo <- mongo("Meteo","user")
 #data_meteo <- obtenirData(db_meteo)
 
