@@ -34,6 +34,22 @@ obtenirData <- function(ma_db){
 
 }
 
+#Moyenne valeur d'une donnée spécifique c((date,val))
+obtenirMoyenne <- function(donnees, valeur){
+
+    data_interet <- data.frame(
+        date = c(donnees$date),
+        valeur = c(valeur)
+    )
+
+    #Calculer les moyennes par date
+    df_resultat <- data_interet %>%
+        group_by(date) %>%
+        summarise(moyenne = mean(valeur, na.rm = TRUE))
+
+    return(df_resultat)
+}
+
 
 #Temperature hebdomadaire
 obtenirGraphe <- function(donnees, abscisse, ordonnee){
@@ -42,6 +58,18 @@ obtenirGraphe <- function(donnees, abscisse, ordonnee){
         aes(x = abscisse, y = ordonnee, colour = donnees$nom) +
         geom_line() +
         geom_point()
+
+}
+
+obtenirGraphe_moy <- function(donnees, abscisse, ordonnee, nom){
+
+    ggplot(donnees) +
+        aes(x = abscisse, y = ordonnee, colour = "red") +
+        geom_line() +
+        geom_point() +
+        labs(
+            title = nom
+        )
 
 }
 
@@ -63,7 +91,3 @@ obtenirGraphe_gaz <- function(donnees, abscisse, ordonnee){
 
 }
 
-#db_meteo <- mongo("Meteo","user")
-#data_meteo <- obtenirData(db_meteo)
-
-#obtenirTemperature(data_meteo)
