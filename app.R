@@ -4,7 +4,7 @@ library(shiny)
 library(mongolite)
 library(ggplot2)
 
-source("meteo.R")
+source("visu.R")
 
 
 #Interface utilisateur Shiny
