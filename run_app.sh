@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export DISPLAY=:0 
 
 pkill -SIGTERM firefox
