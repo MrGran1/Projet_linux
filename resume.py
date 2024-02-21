@@ -55,7 +55,8 @@ def lire_donnees(fichier_json):
             datetime_obj = datetime(date_obj.year, date_obj.month, date_obj.day, heure_obj.hour, heure_obj.minute)
 
             # Convertir en format ISO 8601
-            date_heure_formattee = datetime_obj.isoformat()
+            iso8601_str = datetime_obj.isoformat()
+            date_obj = datetime.fromisoformat(iso8601_str)
 
             # Extraire la consommation de gaz
             consommation_gaz = donnees['results'][0]['consommation']
