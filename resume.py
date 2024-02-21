@@ -60,7 +60,7 @@ for file in files:
     if file.endswith(".json"):
         file_path = os.path.join(input_dir, file)
         lire_donnees(file_path)
-        #os.remove(file_path)
+        os.remove(file_path)
 
 docs = collection.find()
 
@@ -100,7 +100,7 @@ def lire_donnees(dossier_donnees):
                 
                 print("\nLe fichier", fichier, "a été traité.")
 
-            #os.remove(chemin_fichier)
+            os.remove(chemin_fichier)
 
 lire_donnees(dossier_donnees)
 #col.delete_many({})
@@ -119,6 +119,6 @@ for path_doc in documents:
     fichier = open(PATH_ELECT+"/"+path_doc)
     fichier_json = json.load(fichier)
     x = mycol.insert_one(fichier_json["results"][0])
-    #os.remove(PATH_ELECT+"/"+path_doc)
+    os.remove(PATH_ELECT+"/"+path_doc)
 
 client.close()
