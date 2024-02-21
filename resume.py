@@ -44,12 +44,23 @@ def lire_donnees(fichier_json):
         heure = convertir_heure(clef)
         # Si la conversion a réussi
         if heure:
+            # Extraire la consommation de gaz
             consommation_gaz = donnees[clef]
+
+            # Convertir la date et l'heure en objet datetime
+            date_heure_str = date_str + ' ' + clef
+            date_heure = datetime.strptime(date_heure_str, '%Y-%m-%d %H:%M')
+
+            # Formater la date au format AAAA-MM-DDTHH:MM:SS
+            date_heure_formattee = date_heure.strftime('%Y-%m-%dT%H:%M:%S')
+
+            # Créer le document à insérer
             document = {
-                'date' : date_str,
-                'heure': heure,
+                'date': date_heure_formattee,
                 'consommation_gaz': consommation_gaz
             }
+
+            # Insérer le document dans la collection
             collection.insert_one(document)
 
 # Liste tous les fichiers dans le répertoire d'entrée
