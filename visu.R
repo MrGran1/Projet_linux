@@ -1,8 +1,5 @@
 #! /usr/bin/env Rscript
 
-#Bibliothèque MongoDB
-#install.packages("mongolite")
-
 library(mongolite)
 library(ggplot2)
 
