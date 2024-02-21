@@ -35,31 +35,39 @@ def lire_donnees(fichier_json):
     with open(fichier_json, 'r') as file:
         donnees = json.load(file)
 
-    # Extraire la date et l'heure
-    date_str = donnees['results'][0]['date']
-    heure_str = donnees['results'][0]['heure']
+    # Extraire la date
+    donnees = donnees['results'][0]
 
-    # Convertir la date et l'heure en objet datetime
-    date_obj = datetime.strptime(date_str, "%Y-%m-%d")
-    heure_obj = datetime.strptime(heure_str, "%H:%M")
+    # Parcourir les clés du dictionnaire
+    for clef in donnees:
+        # Convertir la clé en objet datetime
+        heure = convertir_heure(clef)
+        # Si la conversion a réussi
+        if heure:
+            # Extraire la date et l'heure
+            date_str = donnees['date']
 
-    # Fusionner date et heure en un seul objet datetime
-    datetime_obj = datetime(date_obj.year, date_obj.month, date_obj.day, heure_obj.hour, heure_obj.minute)
+            # Convertir la date et l'heure en objet datetime
+            date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+            heure_obj = datetime.strptime(heure, "%H:%M")
 
-    # Convertir en format ISO 8601
-    date_heure_formattee = datetime_obj.isoformat()
+            # Fusionner date et heure en un seul objet datetime
+            datetime_obj = datetime(date_obj.year, date_obj.month, date_obj.day, heure_obj.hour, heure_obj.minute)
 
-    # Extraire la consommation de gaz
-    consommation_gaz = donnees['results'][0]['consommation']
+            # Convertir en format ISO 8601
+            date_heure_formattee = datetime_obj.isoformat()
 
-    # Créer le document à insérer
-    document = {
-        'date': date_heure_formattee,
-        'consommation_gaz': consommation_gaz
-    }
+            # Extraire la consommation de gaz
+            consommation_gaz = donnees['results'][0]['consommation']
 
-    # Insérer le document dans la collection
-    collection.insert_one(document)
+            # Créer le document à insérer
+            document = {
+                'date': date_heure_formattee,
+                'consommation_gaz': consommation_gaz
+            }
+
+            # Insérer le document dans la collection
+            collection.insert_one(document)
 
 # Liste tous les fichiers dans le répertoire d'entrée
 files = os.listdir(input_dir)
