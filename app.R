@@ -16,7 +16,7 @@ ui <- fluidPage(
             tabPanel("Analyse de la température", plotOutput("visu_data_temp")),
             tabPanel("Analyse de l'humidité", plotOutput("visu_data_humi")),
             tabPanel("Analyse de la pression", plotOutput("visu_data_pres")),
-            tabPanel("Analyse de la consommation electrique", plotOutput("visu_data_elec"))
+            tabPanel("Analyse de la consommation electrique", plotOutput("visu_data_elec")),
             tabPanel("Analyse de la consommation de gaz", plotOutput("visu_data_gaz"))
             #titlePanel("Analyse de la température sur la semaine",plotOutput("analyse_hebdo_meteo"))
         )
@@ -52,7 +52,7 @@ server <- function(input, output, session){
             obtenirGraphe_elec(data_elec, data_elec$date, data_elec$consommation)
         })
         output$visu_data_gaz <- renderPlot({
-            obtenirGraphe_gaz(data_gaz, data_gaz$date, data_gaz$consommation)
+            obtenirGraphe_gaz(data_gaz, data_gaz$date, data_gaz$consommation_gaz)
         })
 
 
