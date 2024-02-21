@@ -9,3 +9,6 @@
 
 # On rentre dans la DB tout less jours
 0 11 * * * /home/Documents/Cours/linux/Projet_Linux/resume.py
+
+#On lance l'application shiny chaque début de semaine (lundi) à 12h
+0 12 * * 1 /home/Documents/Cours/linuxx/Projet_Linux/run_app.sh
