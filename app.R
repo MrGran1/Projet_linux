@@ -26,10 +26,10 @@ ui <- fluidPage(
 server <- function(input, output, session){
     
     db_meteo <- mongo("Meteo","user")
-    db_elec <- mongo("conso_elec","user")
+    db_elec <- mongo("conso_elect","user")
     data_meteo <- obtenirData(db_meteo)
     data_elec <- obtenirData(db_elec)
-    
+    print(data_elec)
     observe({
 
         
@@ -45,7 +45,7 @@ server <- function(input, output, session){
             obtenirGraphe(data_meteo, data_meteo$date, data_meteo$pression)
         })
         output$visu_data_elec <- renderPlot({
-            obtenirGraphe(data_elec, data_elec$date, data_elec$consommation)
+            obtenirGraphe_elec(data_elec, data_elec$date, data_elec$consommation)
         })
 
 

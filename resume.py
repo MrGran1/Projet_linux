@@ -130,9 +130,11 @@ for path_doc in documents:
 
     # Convertir en format ISO8601
     iso8601_str = datetime_obj.isoformat()
+    date_obj = datetime.fromisoformat(iso8601_str)
 
-    data ={"consommation" : fichier_json["results"][0]["consommation"], "date": iso8601_str}
+
+    data ={"consommation" : fichier_json["results"][0]["consommation"], "date": date_obj}
     x = mycol.insert_one(data)
-    os.remove(PATH_ELECT+"/"+path_doc)
+    #os.remove(PATH_ELECT+"/"+path_doc)
 
 client.close()

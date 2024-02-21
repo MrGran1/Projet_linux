@@ -28,7 +28,7 @@ obtenirData <- function(ma_db){
 
     requete <- paste0('{"date": {"$gte": {"$date": "',date_semaine,'"}, "$lte": {"$date": "',date_ojd,'"}}}')
 
-    data_meteo <- ma_db$find(requete, sort = '{"date": 1, "nom": 1}')
+    data_meteo <- ma_db$find(requete, sort = '{"date": 1}')
     
     return(data_meteo)
 
@@ -40,6 +40,15 @@ obtenirGraphe <- function(donnees, abscisse, ordonnee){
 
     ggplot(donnees) +
         aes(x = abscisse, y = ordonnee, colour = donnees$nom) +
+        geom_line() +
+        geom_point()
+
+}
+
+obtenirGraphe_elec <- function(donnees, abscisse, ordonnee){
+
+    ggplot(donnees) +
+        aes(x = abscisse, y = ordonnee, colour = "blue") +
         geom_line() +
         geom_point()
 
