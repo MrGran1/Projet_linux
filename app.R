@@ -1,9 +1,9 @@
+source("install_packages.R")
 
 library(shiny)
 library(mongolite)
 library(ggplot2)
 
-source("install_packages.R")
 source("meteo.R")
 
 
@@ -54,4 +54,4 @@ server <- function(input, output, session){
 }
 
 #Lancer l'app shiny
-shinyApp(ui = ui, server = server)
+runApp(list(ui = ui, server = server), port=7177)

@@ -1,11 +1,14 @@
 
 0 10 * * * /home/Documents/Cours/linux/Projet_Linux/scriptGaz.sh
 
-#toutes les jours à 00h35          
-35 0 * * * /home/Documents/Cours/linux/Projet_Linux/script.sh
+#data meteo tous les jours à 00h35          
+35 0 * * * /home/Documents/Cours/linux/Projet_Linux/scriptMeteo.sh
 
 #On recupre les data de La consomation de gaz toute les heures
 0 * * * * /home/Documents/Cours/linux/Projet_Linux/get_conso.sh
 
 # On rentre dans la DB tout less jours
 0 11 * * * /home/Documents/Cours/linux/Projet_Linux/resume.py
+
+#On lance l'application shiny chaque début de semaine (lundi) à 12h
+0 12 * * 1 /home/Documents/Cours/linux/Projet_Linux/run_app.sh
