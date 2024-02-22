@@ -4,6 +4,8 @@
 
 output_dir="./conso_gaz"
 
+mkdir -p $output_dir
+
 current_datetime=$(date +"%Y%m%d")
 output_filename="consommation_gaz_${current_datetime}.json"
 
