@@ -1,6 +1,8 @@
 #!/bin/bash
 
-output_dir="~/Documents/Cours/linux/Projet_linux/conso_gaz"
+#output_dir="/home/tigran/Documents/Cours/linux/Projet_linux/conso_gaz"
+
+output_dir="./conso_gaz"
 
 current_datetime=$(date +"%Y%m%d")
 output_filename="consommation_gaz_${current_datetime}.json"
