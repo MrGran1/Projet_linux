@@ -41,15 +41,14 @@ def lire_donnees(fichier_json):
     # Parcourir les clés du dictionnaire
     for clef in donnees:
         # Convertir la clé en objet datetime
-        heure = convertir_heure(clef)
+        heure_obj = convertir_heure(clef)
         # Si la conversion a réussi
-        if heure:
+        if heure_obj:
             # Extraire la date et l'heure
             date_str = donnees['date']
 
-            # Convertir la date et l'heure en objet datetime
+            # Convertir la date en objet datetime
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
-            heure_obj = datetime.strptime(heure, "%H:%M")
 
             # Fusionner date et heure en un seul objet datetime
             datetime_obj = datetime(date_obj.year, date_obj.month, date_obj.day, heure_obj.hour, heure_obj.minute)
