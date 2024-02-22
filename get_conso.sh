@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PTH_DIR="/home/tigran/Documents/Cours/linux/Projet_linux/conso_electrique"
+PTH_DIR="~/Documents/Cours/linux/Projet_linux/conso_electrique"
 DATE=$(date '+%Y-%m-%d') 
 HEURE=$(date '+%H') 
 heure_moins_une=$(date -d "$HEURE - 1 hour" '+%H')
