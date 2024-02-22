@@ -1,6 +1,6 @@
 #!/bin/bash
 
-path="/home/tigran/Documents/Cours/linux/Projet_linux/meteo"
+path="~/Documents/Cours/linux/Projet_linux/meteo"
 fichier="meteo_data"
 
 #Date de départ au format YYYY-MM-DDTHH:00:00
