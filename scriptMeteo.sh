@@ -1,6 +1,8 @@
 #!/bin/bash
 
-path="~/Documents/Cours/linux/Projet_linux/meteo"
+#path="/home/tigran/Documents/Cours/linux/Projet_linux/meteo"
+
+path="./meteo"
 fichier="meteo_data"
 
 #Date de départ au format YYYY-MM-DDTHH:00:00
@@ -12,7 +14,7 @@ nombre_iterations=8
 
 #Création du repertoire
 if [ ! -d "$path" ]; then
-    mkdir "$path"
+    mkdir -p $path
 fi
 
 
