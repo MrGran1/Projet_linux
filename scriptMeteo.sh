@@ -36,7 +36,7 @@ for ((i=0; i<$nombre_iterations; i++)); do
         echo "Données récupérées avec succès!"
     fi
 
-    #Incrémenter la date de 2 heures
+    #Incrémenter la date de 3 heures
     date_depart=$(date -d "$date_depart 3 hours" +"%Y-%m-%dT%H:00:00")
 
     #Pour eviter des erreurs de traitement
