@@ -58,7 +58,7 @@ def lire_donnees(fichier_json):
             date_iso = datetime.fromisoformat(iso8601_str)
 
             # Extraire la consommation de gaz
-            consommation_gaz = donnees['consommation_journaliere_mwh_pcs']
+            consommation_gaz = donnees[clef]
 
             # Créer le document à insérer
             document = {
