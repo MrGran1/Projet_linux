@@ -58,13 +58,7 @@ def lire_donnees(fichier_json):
             date_iso = datetime.fromisoformat(iso8601_str)
 
             # Extraire la consommation de gaz
-            heure = heure_obj.strftime("%H_%M")
-            consommation_gaz = donnees[heure]
-            print('##')
-            print(heure)
-            print(heure_obj)
-            print(clef)
-            print('##')
+            consommation_gaz = donnees[clef]
 
             # Créer le document à insérer
             document = {
