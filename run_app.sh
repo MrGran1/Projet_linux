@@ -4,7 +4,7 @@ export DISPLAY=:0
 
 pkill -SIGTERM firefox
 
-cd ~/Documents/Cours/linux/Projet_Linux/ &&
+cd ~/Documents/Cours/linux/Projet_linux/ &&
 
 (sleep 2 && /usr/bin/firefox "http://127.0.0.1:7177" &);
 
