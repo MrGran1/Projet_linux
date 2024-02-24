@@ -1,10 +1,10 @@
+source("install_packages.R")
 
 library(shiny)
 library(mongolite)
 library(ggplot2)
 
-source("install_packages.R")
-source("meteo.R")
+source("visu.R")
 
 
 #Interface utilisateur Shiny
@@ -16,8 +16,11 @@ ui <- fluidPage(
             tabPanel("Analyse de la température", plotOutput("visu_data_temp")),
             tabPanel("Analyse de l'humidité", plotOutput("visu_data_humi")),
             tabPanel("Analyse de la pression", plotOutput("visu_data_pres")),
-            tabPanel("Analyse de la consommation electrique", plotOutput("visu_data_elec"))
-            #titlePanel("Analyse de la température sur la semaine",plotOutput("analyse_hebdo_meteo"))
+            tabPanel("Analyse des moyennes de température", plotOutput("visu_data_moy_temp")),
+            tabPanel("Analyse des moyennes d'humidité", plotOutput("visu_data_moy_humi")),
+            tabPanel("Analyse des moyennes de pression", plotOutput("visu_data_moy_pres")),
+            tabPanel("Analyse de la consommation electrique", plotOutput("visu_data_elec")),
+            tabPanel("Analyse de la consommation de gaz", plotOutput("visu_data_gaz"))
         )
     )
 )
@@ -26,9 +29,16 @@ ui <- fluidPage(
 server <- function(input, output, session){
     
     db_meteo <- mongo("Meteo","user")
-    db_elec <- mongo("conso_elec","user")
+    db_elec <- mongo("conso_elect","user")
+    db_gaz <- mongo("gaz","user")
+
     data_meteo <- obtenirData(db_meteo)
     data_elec <- obtenirData(db_elec)
+    data_gaz <- obtenirData(db_gaz)
+    
+    moy_temp <- obtenirMoyenne(data_meteo,data_meteo$temperature)
+    moy_humi <- obtenirMoyenne(data_meteo,data_meteo$humidite)
+    moy_pres <- obtenirMoyenne(data_meteo,data_meteo$pression)
     
     observe({
 
@@ -44,8 +54,26 @@ server <- function(input, output, session){
         output$visu_data_pres <- renderPlot({
             obtenirGraphe(data_meteo, data_meteo$date, data_meteo$pression)
         })
+
+        
+        output$visu_data_moy_temp <- renderPlot({
+            obtenirGraphe_moy(moy_temp, moy_temp$date, moy_temp$moyenne, "température")
+        })
+
+        output$visu_data_moy_humi <- renderPlot({
+            obtenirGraphe_moy(moy_humi, moy_humi$date, moy_humi$moyenne, "humidité")
+        })
+
+        output$visu_data_moy_pres <- renderPlot({
+            obtenirGraphe_moy(moy_pres, moy_pres$date, moy_pres$moyenne, "pression")
+        })
+
+        
         output$visu_data_elec <- renderPlot({
-            obtenirGraphe(data_elec, data_elec$date, data_elec$consommation)
+            obtenirGraphe_elec(data_elec, data_elec$date, data_elec$consommation)
+        })
+        output$visu_data_gaz <- renderPlot({
+            obtenirGraphe_gaz(data_gaz, data_gaz$date, data_gaz$consommation_gaz)
         })
 
 
@@ -54,4 +82,4 @@ server <- function(input, output, session){
 }
 
 #Lancer l'app shiny
-shinyApp(ui = ui, server = server)
+runApp(list(ui = ui, server = server), port=7177)

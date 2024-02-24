@@ -34,22 +34,39 @@ def lire_donnees(fichier_json):
     # Ouvrir le fichier JSON
     with open(fichier_json, 'r') as file:
         donnees = json.load(file)
+
     # Extraire la date
     donnees = donnees['results'][0]
-    date_str = donnees['date']
 
     # Parcourir les clés du dictionnaire
     for clef in donnees:
         # Convertir la clé en objet datetime
-        heure = convertir_heure(clef)
+        heure_obj = convertir_heure(clef)
         # Si la conversion a réussi
-        if heure:
+        if heure_obj:
+            # Extraire la date et l'heure
+            date_str = donnees['date']
+
+            # Convertir la date en objet datetime
+            date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+
+            # Fusionner date et heure en un seul objet datetime
+            datetime_obj = datetime(date_obj.year, date_obj.month, date_obj.day, heure_obj.hour, heure_obj.minute)
+
+            # Convertir en format ISO 8601
+            iso8601_str = datetime_obj.isoformat()
+            date_iso = datetime.fromisoformat(iso8601_str)
+
+            # Extraire la consommation de gaz
             consommation_gaz = donnees[clef]
+
+            # Créer le document à insérer
             document = {
-                'date' : date_str,
-                'heure': heure,
+                'date': date_iso,
                 'consommation_gaz': consommation_gaz
             }
+
+            # Insérer le document dans la collection
             collection.insert_one(document)
 
 # Liste tous les fichiers dans le répertoire d'entrée
@@ -130,9 +147,11 @@ for path_doc in documents:
 
     # Convertir en format ISO8601
     iso8601_str = datetime_obj.isoformat()
+    date_obj = datetime.fromisoformat(iso8601_str)
 
-    data ={"consommation" : fichier_json["results"][0]["consommation"], "date": iso8601_str}
+
+    data ={"consommation" : fichier_json["results"][0]["consommation"], "date": date_obj}
     x = mycol.insert_one(data)
-    os.remove(PATH_ELECT+"/"+path_doc)
+    #os.remove(PATH_ELECT+"/"+path_doc)
 
 client.close()

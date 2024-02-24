@@ -1,5 +1,5 @@
 #Installer les packages nécessaires
-packages <- c("shiny", "mongolite", "ggplot2")
+packages <- c("shiny", "mongolite", "ggplot2", "dplyr")
 
 
 #On vérifie si les packages sont déjà installés

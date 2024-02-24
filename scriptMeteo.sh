@@ -1,6 +1,8 @@
 #!/bin/bash
 
-path="/home/tigran/Documents/Cours/linux/Projet_linux/meteo"
+#path="/home/tigran/Documents/Cours/linux/Projet_linux/meteo"
+
+path="./meteo"
 fichier="meteo_data"
 
 #Date de départ au format YYYY-MM-DDTHH:00:00
@@ -12,7 +14,7 @@ nombre_iterations=8
 
 #Création du repertoire
 if [ ! -d "$path" ]; then
-    mkdir "$path"
+    mkdir -p $path
 fi
 
 
@@ -34,10 +36,10 @@ for ((i=0; i<$nombre_iterations; i++)); do
         echo "Données récupérées avec succès!"
     fi
 
-    #Incrémenter la date de 2 heures
+    #Incrémenter la date de 3 heures
     date_depart=$(date -d "$date_depart 3 hours" +"%Y-%m-%dT%H:00:00")
 
     #Pour eviter des erreurs de traitement
-    sleep 5s
+    sleep 1s
 
 done
