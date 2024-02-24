@@ -13,16 +13,33 @@ ui <- fluidPage(
 
     mainPanel(
         tabsetPanel(
-            tabPanel("Analyse de la température", plotOutput("visu_data_temp")),
-            tabPanel("Analyse de l'humidité", plotOutput("visu_data_humi")),
-            tabPanel("Analyse de la pression", plotOutput("visu_data_pres")),
-            tabPanel("Analyse des moyennes de température", plotOutput("visu_data_moy_temp")),
-            tabPanel("Analyse des moyennes d'humidité", plotOutput("visu_data_moy_humi")),
-            tabPanel("Analyse des moyennes de pression", plotOutput("visu_data_moy_pres")),
-            tabPanel("Analyse de la consommation electrique", plotOutput("visu_data_elec")),
-            tabPanel("Analyse de la consommation de gaz", plotOutput("visu_data_gaz"))
+            tabPanel("Météo",
+                tabPanel("Température",
+                    tabsetPanel(
+                        tabPanel("Température", plotOutput("visu_data_temp")),
+                        tabPanel("Moyenne", plotOutput("visu_data_moy_temp"))
+                    )
+                ),
+                tabPanel("Humidité",
+                    tabsetPanel(
+                        tabPanel("Humidité", plotOutput("visu_data_humi")),
+                        tabPanel("Moyenne", plotOutput("visu_data_moy_humi"))
+                    )
+                ),
+                tabPanel("Pression",
+                    tabsetPanel(
+                        tabPanel("Pression", plotOutput("visu_data_pres")),
+                        tabPanel("Moyenne", plotOutput("visu_data_moy_pres"))
+                    )
+                )
+            ),
+
+            tabPanel("Gaz", plotOutput("visu_data_gaz")),
+
+            tabPanel("Electricité", plotOutput("visu_data_elec"))   
         )
     )
+
 )
 
 #Serveur Shiny
