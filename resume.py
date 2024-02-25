@@ -152,6 +152,7 @@ for path_doc in documents:
 
     data ={"consommation" : fichier_json["results"][0]["consommation"], "date": date_obj}
     x = mycol.insert_one(data)
-    #os.remove(PATH_ELECT+"/"+path_doc)
+    fichier.close()
+    os.remove(PATH_ELECT+"/"+path_doc)
 
 client.close()
