@@ -135,23 +135,24 @@ documents = os.listdir(PATH_ELECT)
 for path_doc in documents:
     fichier = open(PATH_ELECT+"/"+path_doc)
     fichier_json = json.load(fichier)
-    date_str = fichier_json["results"][0]['date']
-    heure_str = fichier_json["results"][0]['heure']
+    if fichier_json["total_count"] != 0:
+        date_str = fichier_json["results"][0]['date']
+        heure_str = fichier_json["results"][0]['heure']
 
-    # Convertir en objet datetime
-    date_obj = datetime.strptime(date_str, "%Y-%m-%d")
-    heure_obj = datetime.strptime(heure_str, "%H:%M")
+        # Convertir en objet datetime
+        date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+        heure_obj = datetime.strptime(heure_str, "%H:%M")
 
-    # Fusionner date et heure en un seul objet datetime
-    datetime_obj = datetime(date_obj.year, date_obj.month, date_obj.day, heure_obj.hour, heure_obj.minute)
+        # Fusionner date et heure en un seul objet datetime
+        datetime_obj = datetime(date_obj.year, date_obj.month, date_obj.day, heure_obj.hour, heure_obj.minute)
 
-    # Convertir en format ISO8601
-    iso8601_str = datetime_obj.isoformat()
-    date_obj = datetime.fromisoformat(iso8601_str)
+        # Convertir en format ISO8601
+        iso8601_str = datetime_obj.isoformat()
+        date_obj = datetime.fromisoformat(iso8601_str)
 
-
-    data ={"consommation" : fichier_json["results"][0]["consommation"], "date": date_obj}
-    x = mycol.insert_one(data)
+        data ={"consommation" : fichier_json["results"][0]["consommation"], "date": date_obj}
+        x = mycol.insert_one(data)
+    
     fichier.close()
     os.remove(PATH_ELECT+"/"+path_doc)
 
