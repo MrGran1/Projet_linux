@@ -36,7 +36,12 @@ ui <- fluidPage(
 
             tabPanel("Gaz", plotOutput("visu_data_gaz")),
 
-            tabPanel("Electricité", plotOutput("visu_data_elec"))   
+            tabPanel("Electricité", plotOutput("visu_data_elec")),
+
+            tabPanel("Résumé données",
+                tabPanel("Météorologiques", plotOutput("visu_data_multi_meteo")),
+                tabPanel("Energétiques", plotOutput("visu_data_multi_energie"))
+            )   
         )
     )
 
@@ -94,6 +99,21 @@ server <- function(input, output, session){
             obtenirGraphe_gaz(data_gaz, data_gaz$date, data_gaz$consommation_gaz)
         })
 
+        output$visu_data_multi_meteo <- renderPlot({
+            df_list <- list(data.frame(date = c(data_meteo$date), valeur = c(data_meteo$temperature), nom="temperature"), 
+                            data.frame(date = c(data_meteo$date), valeur = c(data_meteo$humidite), nom="humidite")
+                        )
+
+            obtenirGraphe_Multiples(df_list,"Météorologiques")
+        })
+
+        output$visu_data_multi_energie <- renderPlot({
+            df_list <- list(data.frame(date = c(data_gaz$date), valeur = c(data_gaz$consommation_gaz), nom="gaz"),
+                            data.frame(date = c(data_elec$date), valeur = c(data_elec$consommation), nom="électicité")
+                        )
+
+            obtenirGraphe_Multiples(df_list,"Energétiques")
+        })
 
     })
 

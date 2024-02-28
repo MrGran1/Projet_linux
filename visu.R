@@ -105,3 +105,23 @@ obtenirGraphe_gaz <- function(donnees, abscisse, ordonnee){
 
 }
 
+library(ggplot2)
+
+
+obtenirGraphe_Multiples <- function(df_list, titre) {
+    
+    palette_couleurs <- c("#000000", "#333333", "#4B3621", "#004d00", "#000080", "#800020", "#8B0000", "#4B0082", "#191970", "#8B4513")
+
+    p <- ggplot()
+    
+    for (i in 1:length(df_list)) {
+        p <- p + geom_line(aes(x = date, y = valeur, color = nom), data=df_list[[i]])
+    }
+    
+    
+    p <- p + labs(x = "date", y = "résultat", color = "Courbes") +
+        ggtitle(titre) +
+        scale_color_manual(values = sample(palette_couleurs))
+    
+    return(p)
+}
