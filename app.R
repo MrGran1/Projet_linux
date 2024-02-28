@@ -57,6 +57,7 @@ server <- function(input, output, session){
     moy_humi <- obtenirMoyenne(data_meteo,data_meteo$humidite)
     moy_pres <- obtenirMoyenne(data_meteo,data_meteo$pression)
     
+
     observe({
 
         
@@ -74,15 +75,15 @@ server <- function(input, output, session){
 
         
         output$visu_data_moy_temp <- renderPlot({
-            obtenirGraphe_moy(moy_temp, moy_temp$date, moy_temp$moyenne, "température")
+            obtenirGraphe_moy(moy_temp, moy_temp$date, moy_temp$moyenne, "température", "°C")
         })
 
         output$visu_data_moy_humi <- renderPlot({
-            obtenirGraphe_moy(moy_humi, moy_humi$date, moy_humi$moyenne, "humidité")
+            obtenirGraphe_moy(moy_humi, moy_humi$date, moy_humi$moyenne, "humidité", "%")
         })
 
         output$visu_data_moy_pres <- renderPlot({
-            obtenirGraphe_moy(moy_pres, moy_pres$date, moy_pres$moyenne, "pression")
+            obtenirGraphe_moy(moy_pres, moy_pres$date, moy_pres$moyenne, "variation de pression", "Pa")
         })
 
         

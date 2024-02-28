@@ -16,12 +16,12 @@ obtenirData <- function(ma_db){
     #D'il y a une semaine (date de départ)
     date_sys_semaine <- Sys.time() - 7 * 24 * 60 * 60
     #Date formatée
-    date_semaine <- format(date_sys_semaine, "%Y-%m-%dT23:59:00Z")
+    date_semaine <- format(date_sys_semaine, "%Y-%m-%dT00:00:00Z")
 
     #Jusqu'à la date du jour
     date_sys_ojd <- Sys.time()
     #Date formatée
-    date_ojd <- format(date_sys_ojd, "%Y-%m-%dT00:00:00Z")
+    date_ojd <- format(date_sys_ojd, "%Y-%m-%dT23:59:00Z")
 
 
     requete <- paste0('{"date": {"$gte": {"$date": "',date_semaine,'"}, "$lte": {"$date": "',date_ojd,'"}}}')
@@ -59,13 +59,15 @@ obtenirGraphe <- function(donnees, abscisse, ordonnee){
 
 }
 
-obtenirGraphe_moy <- function(donnees, abscisse, ordonnee, nom){
+obtenirGraphe_moy <- function(donnees, abscisse, ordonnee, nom, y_unite){
 
     ggplot(donnees) +
-        aes(x = abscisse, y = ordonnee, colour = "red") +
-        geom_line() +
-        geom_point() +
+        aes(x = abscisse, y = ordonnee) +
+        geom_line(colour = "red") +
+        geom_point(colour = "red") +
         labs(
+            x = "date",
+            y = y_unite,
             title = nom
         )
 
@@ -74,18 +76,28 @@ obtenirGraphe_moy <- function(donnees, abscisse, ordonnee, nom){
 obtenirGraphe_elec <- function(donnees, abscisse, ordonnee){
 
     ggplot(donnees) +
-        aes(x = abscisse, y = ordonnee, colour = "blue") +
-        geom_line() +
-        geom_point()
+        aes(x = abscisse, y = ordonnee) +
+        labs(
+            x = "date",
+            y = "MW",
+            title = "consommation d'électricité"
+        ) +
+        geom_line(colour = "blue") +
+        geom_point(colour = "blue")
 
 }
 
 obtenirGraphe_gaz <- function(donnees, abscisse, ordonnee){
 
     ggplot(donnees) +
-        aes(x = abscisse, y = ordonnee, colour = "red") +
-        geom_line() +
-        geom_point()
+        aes(x = abscisse, y = ordonnee) +
+        labs(
+            x = "date",
+            y = "MWh",
+            title = "consommation de gaz"
+        ) +
+        geom_line(colour = "red") +
+        geom_point(colour = "red")
 
 }
 
