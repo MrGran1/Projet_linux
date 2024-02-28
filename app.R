@@ -62,15 +62,15 @@ server <- function(input, output, session){
 
         
         output$visu_data_temp <- renderPlot({
-            obtenirGraphe(data_meteo, data_meteo$date, data_meteo$temperature)
+            obtenirGraphe(data_meteo, data_meteo$date, data_meteo$temperature, "°C")
         })
 
         output$visu_data_humi <- renderPlot({
-            obtenirGraphe(data_meteo, data_meteo$date, data_meteo$humidite)
+            obtenirGraphe(data_meteo, data_meteo$date, data_meteo$humidite, "%")
         })
 
         output$visu_data_pres <- renderPlot({
-            obtenirGraphe(data_meteo, data_meteo$date, data_meteo$pression)
+            obtenirGraphe(data_meteo, data_meteo$date, data_meteo$pression, "Pa")
         })
 
         

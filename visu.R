@@ -50,12 +50,16 @@ obtenirMoyenne <- function(donnees, valeur){
 
 
 #Temperature hebdomadaire
-obtenirGraphe <- function(donnees, abscisse, ordonnee){
+obtenirGraphe <- function(donnees, abscisse, ordonnee, y_unite){
 
     ggplot(donnees) +
         aes(x = abscisse, y = ordonnee, colour = donnees$nom) +
         geom_line() +
-        geom_point()
+        geom_point() +
+    labs(
+            x = "date",
+            y = y_unite
+        )
 
 }
 
