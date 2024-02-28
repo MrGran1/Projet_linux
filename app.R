@@ -112,7 +112,7 @@ server <- function(input, output, session){
                             data.frame(date = c(data_elec$date), valeur = c(data_elec$consommation), nom="électicité")
                         )
 
-            obtenirGraphe_Multiples(df_list,"Energétiques")
+            obtenirGraphe_Multiples(df_list,"Consommation énergétique")
         })
 
     })
