@@ -16,7 +16,7 @@ obtenirData <- function(ma_db){
     #D'il y a une semaine (date de départ)
     date_sys_semaine <- Sys.time() - 7 * 24 * 60 * 60
     #Date formatée
-    date_semaine <- format(date_sys_semaine, "%Y-%m-%dT00:00:00Z")
+    date_semaine <- format(date_sys_semaine, "%Y-%m-%dT23:59:00Z")
 
     #Jusqu'à la date du jour
     date_sys_ojd <- Sys.time()
