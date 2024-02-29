@@ -8,7 +8,7 @@
 0 * * * * cd ~/Documents/Cours/linux/Projet_linux && ./get_conso.sh
 
 # On rentre dans la DB tout less jours
-0 11 * * * cd ~/Documents/Cours/linux/Projet_linux && python3 resume.py
+5 11 * * * cd ~/Documents/Cours/linux/Projet_linux && python3 resume.py
 
 #On lance l'application shiny chaque début de semaine (lundi) à 12h
 0 12 * * 1 cd ~/Documents/Cours/linux/Projet_linux && ./run_app.sh
