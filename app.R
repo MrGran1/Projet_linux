@@ -9,7 +9,7 @@ source("visu.R")
 
 #Interface utilisateur Shiny
 ui <- fluidPage(
-    titlePanel("Données météorologiques SYNOP de la semaine"),
+    titlePanel("Récapitulatif hebdomadaire des données météorologiques et énergétiques"),
 
     mainPanel(
         tabsetPanel(
