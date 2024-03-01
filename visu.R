@@ -18,10 +18,10 @@ obtenirData <- function(ma_db){
     #Date formatée
     date_semaine <- format(date_sys_semaine, "%Y-%m-%dT00:00:00Z")
 
-    #Jusqu'à la date du jour
+    #Jusqu'à la date du jour (00h00)
     date_sys_ojd <- Sys.time()
     #Date formatée
-    date_ojd <- format(date_sys_ojd, "%Y-%m-%dT23:59:00Z")
+    date_ojd <- format(date_sys_ojd, "%Y-%m-%dT00:00:00Z")
 
 
     requete <- paste0('{"date": {"$gte": {"$date": "',date_semaine,'"}, "$lte": {"$date": "',date_ojd,'"}}}')
