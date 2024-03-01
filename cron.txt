@@ -1,5 +1,5 @@
 
-0 10 * * * cd ~/Documents/Cours/linux/Projet_linux && ./scriptGaz.sh
+5 10 * * * cd ~/Documents/Cours/linux/Projet_linux && ./scriptGaz.sh
 
 #data meteo tous les jours à 00h35          
 35 0 * * * cd ~/Documents/Cours/linux/Projet_linux && ./scriptMeteo.sh
