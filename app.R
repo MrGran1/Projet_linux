@@ -4,7 +4,7 @@ library(shiny)
 library(mongolite)
 library(ggplot2)
 
-source("visu.R")
+source("utils.R")
 
 
 #Interface utilisateur Shiny
